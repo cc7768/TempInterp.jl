@@ -1,4 +1,4 @@
-module Interp
+module TempInterp
 
 import Dierckx: evaluate, Spline1D, derivative
 
