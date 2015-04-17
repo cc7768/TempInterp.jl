@@ -151,9 +151,14 @@ evaluate(ii::Interpoland, x::AbstractVector) =
 # constructor to take a functional space plus a vector y of the function
 # on spc.nodes.nodes and compute coefs using `default_coefs`
 function Interpoland(spc::FunctionalSpace; y::Vector=[NaN])
-    if all(isnan(y))
+    if all(isnan(y)) &&  length(y) == 1
         error("I don't know how you got here, but pass f(nodes) as kwarg y")
     end
+
+    if all(isnan(y))
+        error("You got all NaNs son, try something different")
+    end
+
     coefs = default_coefs(spc, y)
     Interpoland(spc, coefs)
 end
